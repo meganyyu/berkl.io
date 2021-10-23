@@ -122,18 +122,22 @@ function change_direction(event) {
   if (keyPressed === LEFT_KEY && !goingRight) {
     dx = -10;
     dy = 0;
+    direction = "left";
   }
   if (keyPressed === UP_KEY && !goingDown) {
     dx = 0;
     dy = -10;
+    direction = "up";
   }
   if (keyPressed === RIGHT_KEY && !goingLeft) {
     dx = 10;
     dy = 0;
+    direction = "right";
   }
   if (keyPressed === DOWN_KEY && !goingUp) {
     dx = 0;
     dy = 10;
+    direction = "down";
   }
 }
 
