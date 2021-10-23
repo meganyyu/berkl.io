@@ -28,7 +28,7 @@ let changing_direction = false;
 let dx = 10;
 let dy = 0;
 // Direction
-let direction = "right";
+let direction = 0;
 
 // CALLS TO START GAME
 // Start game + draw the cubs.
@@ -122,22 +122,22 @@ function change_direction(event) {
   if (keyPressed === LEFT_KEY && !goingRight) {
     dx = -10;
     dy = 0;
-    direction = "left";
+    direction = 3;
   }
   if (keyPressed === UP_KEY && !goingDown) {
     dx = 0;
     dy = -10;
-    direction = "up";
+    direction = 1;
   }
   if (keyPressed === RIGHT_KEY && !goingLeft) {
     dx = 10;
     dy = 0;
-    direction = "right";
+    direction = 0;
   }
   if (keyPressed === DOWN_KEY && !goingUp) {
     dx = 0;
     dy = 10;
-    direction = "down";
+    direction = 2;
   }
 }
 
