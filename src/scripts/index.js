@@ -20,14 +20,15 @@ for (let i = 0; i < 20; i++) {
   cubs.unshift(cub);
 }
 
+// Score
 let score = 0;
-
 // True if changing direction.
 let changing_direction = false;
-
 // Velocities
 let dx = 10;
 let dy = 0;
+// Direction
+let direction = "right";
 
 // CALLS TO START GAME
 // Start game + draw the cubs.
