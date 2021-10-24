@@ -3,7 +3,7 @@
     berkl.io
 </h1>
 
-A Berkeley-themed (.io) web game. Collect the Cal Cubs!
+A Berkeley-themed rendition of the Snake game. Collect the Cal Cubs!
 
 Built at CalHacks 8.0 with [Node.js](https://nodejs.org/), [socket.io](https://socket.io/), and [HTML5 Canvas](https://www.w3schools.com/html/html5_canvas.asp).
 
