@@ -19,12 +19,16 @@ tileAtlas.src = '../assets/random-tile.png';
 const map = {
     cols: 21, // known width of full map
     rows: 14, // known height of full map
-    tsize: board.width / 14, // temporary tile size for static tilemap
-    tiles: Array.from(Array(21 * 14).keys()), // array noting what type of tile in each position
-    getTile: function (col, row) { // helper for fetching specific location's tile
-        return this.tiles[row * map.cols + col];
+    tsize: board.height / 2, // tile size if 2 x 3 tiles on screen at a time
+    layers: [
+        Array.from(Array(21 * 14).keys()) // background array noting what type of tile in each position
+    ],
+    getTile: function (layer, col, row) { // helper for fetching specific location's tile
+        return this.layers[layer][row * map.cols + col];
     }
 };
+
+const camera = new Camera(map, board.width, board.height); // camera for rendering
 
 // Array of the head bear and its cubs.
 // First element is the head.
@@ -104,6 +108,7 @@ function main() {
   changing_direction = false;
   setTimeout(function onTick() {
     clear_board();
+    update_camera(); // delta
     render(); // TODO: move render code into this function
     draw_obstacles();
     draw_cubs();
@@ -202,25 +207,53 @@ function display_score(found, left) {
   lostText.innerHTML = "Cubs Left: " + cubs_left;
 }
 
+function Camera(map, width, height) {
+    this.x = 0; // upper left corner of camera
+    this.y = 0; // upper right corner of camera
+    this.width = width;
+    this.height = height;
+    this.maxX = map.cols * map.tsize - width;
+    this.maxY = map.rows * map.tsize - height;
+}
+
+Camera.prototype.move = function (delta, dirx, diry) {
+    // move camera
+    this.x += dirx;
+    this.y += diry;
+    // clamp values
+    this.x = Math.max(0, Math.min(this.x, this.maxX));
+    this.y = Math.max(0, Math.min(this.y, this.maxY));
+};
+
 // Runs game rendering
 function render() {
     // TODO: return instead of rendering if something wrong with current state
   
     // Draw background
-    renderBackground();
-  
+    renderBackground(0);
+
     // TODO: move player and obstacle rendering here
+    // TODO: change obstacles to be a layer 1 background tile, and use logic map for collisions
 }
 
-// Draws all the background tiles in the map onto the screen.
-function renderBackground() {
-    for (let c = 0; c < map.cols; c++) {
-        for (let r = 0; r < map.rows; r++) {
-            const tile = map.getTile(c, r);
+// Draws all the background tiles in the map within camera view onto the screen.
+function renderBackground(layer) {
+    const startCol = Math.floor(camera.x / map.tsize);
+    const endCol = startCol + (camera.width / map.tsize);
+    const startRow = Math.floor(camera.y / map.tsize);
+    const endRow = startRow + (camera.height / map.tsize);
+    const offsetX = -camera.x + startCol * map.tsize;
+    const offsetY = -camera.y + startRow * map.tsize;
+
+    for (let c = startCol; c <= endCol; c++) {
+        for (let r = startRow; r <= endRow; r++) {
+            const tile = map.getTile(layer, c, r);
+            const x = (c - startCol) * map.tsize + offsetX;
+            const y = (r - startRow) * map.tsize + offsetY;
             ctx.drawImage(
                 tileAtlas, // image
-                c * map.tsize,  // target x
-                r * map.tsize, // target y
+                Math.round(x),  // target x
+                Math.round(y), // target y
                 map.tsize, // target width
                 map.tsize // target height
             );
@@ -229,6 +262,19 @@ function renderBackground() {
 }
 
 // MOVEMENT FUNCTIONS
+
+// Updates camera according to bear location and movement.
+function update_camera() { // delta
+    var dirx = 0;
+    var diry = 0;
+
+    if (direction == 'left') { dirx = -18; }
+    if (direction == 'right') { dirx = 18; }
+    if (direction == 'back') { diry = -18; }
+    if (direction == 'front') { diry = 18; }
+
+    camera.move(0, dirx, diry); // delta
+}
 
 // Changes direction of the family accordingly when key is pressed.
 function change_direction(event) {
