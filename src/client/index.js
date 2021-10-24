@@ -309,10 +309,12 @@ function has_game_ended() {
 var modal = document.getElementById("game-end-window");
 // Modal content / where the result goes
 var modal_content = document.getElementById("modal-content");
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
+// Play again button
+var again_btn = document.getElementById("again");
+function again() {
+  window.location.href = 'index.html';
 }
+again_btn.onclick = again;
 
 // UTILITIES
 // Returns a random coordinate given a minimum and a maximum.
