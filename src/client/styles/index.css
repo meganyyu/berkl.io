@@ -6,6 +6,11 @@ body {
   background-color: #3B7EA1; /* shade of blue */
 }
 
+img {
+  max-height: 80%;
+  max-width: 80%;
+}
+
 /* canvas: center and round the corners */
 #board {
   position: absolute;

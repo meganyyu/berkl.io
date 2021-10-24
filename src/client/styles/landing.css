@@ -11,6 +11,14 @@ img {
   max-width: 100%;
 }
 
+h1:hover, h4:hover {
+  cursor: default;
+}
+
+h2:hover, #how-to:hover {
+  cursor: pointer;
+}
+
 /* BACKGROUND BEARS AND THEIR ANIMATIONS */
 /* entire background */
 #draw-board {
@@ -126,6 +134,7 @@ img {
 .choice:hover {
   animation-name: wave;
   animation-duration: 1s;
+  cursor: pointer;
 }
 
 /* wave animation - goes up and down */
