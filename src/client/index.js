@@ -8,7 +8,8 @@ const ctx = board.getContext("2d");
 // Array of the head bear and its cubs.
 // First element is the head.
 let bear_family = [
-  {x: board.width / 2, y: board.height / 2}
+  // {x: board.width / 2, y: board.height / 2}
+  {x: 100, y: 100}
 ];
 
 // Array of the cubs on the screen, not yet in a family.
@@ -191,24 +192,49 @@ function move_family() {
   let new_x = bear_family[0].x + dx;
   let new_y = bear_family[0].y + dy;
 
+  let bear_center_x = new_x + 12;
+  let bear_center_y = new_y + 12;
+
   // Check if new coordinates hit obstacle. If they, do update accordingly.
   for (let i = 0; i < obstacles.length; i++) {
-    top_bound = obstacles[i].y;
-    bottom_bound = obstacles[i].y + obstacles[i].height;
-    left_bound = obstacles[i].x;
-    right_bound = obstacles[i].x + obstacles[i].width;
+    let top_bound = obstacles[i].y;
+    let bottom_bound = obstacles[i].y + obstacles[i].height;
+    let left_bound = obstacles[i].x;
+    let right_bound = obstacles[i].x + obstacles[i].width;
 
-    if (new_x > left_bound && new_x < right_bound && new_y > top_bound && new_y < bottom_bound) {
-      if (direction === "right") {
-        new_x = left_bound - 5;
+    if (bear_center_x < right_bound && bear_center_x > left_bound && bear_center_y > top_bound && bear_center_y < bottom_bound) {
+      if (direction == "right") {
+        new_x = left_bound - 29;
       } else if (direction == "left") {
         new_x = right_bound + 5;
-      } else if (direction === "down") {
-        new_y = top_bound - 5;
+      } else if (direction == "down") {
+        new_y = top_bound - 29;
       } else {
         new_y = bottom_bound + 5;
       }
     }
+
+    // if (bear_right_bound > left_bound && bear_left_bound  && bear_top_bound > top_bound && bear_bottom_bound < bottom_bound) {
+    //   new_x = left_bound - 29;
+    // } else if (bear_right_bound > left_bound && bear_top_bound > top_bound && bear_bottom_bound < bottom_bound) {
+    //   new_x = right_bound + 5;
+    // } else if (bear_bottom_bound > top_bound && bear_left_bound > left_bound && bear_right_bound < right_bound) {
+    //   new_y = top_bound - 29;
+    // } else if (bear_top_bound < bottom_bound && bear_left_bound > left_bound && bear_right_bound < right_bound) {
+    //   new_y = bottom_bound + 5
+    // }
+    //
+    // if (new_x > left_bound && new_x < right_bound && new_y > top_bound && new_y < bottom_bound) {
+    //   if (direction == "right") {
+    //     new_x = left_bound - 5;
+    //   } else if (direction == "left") {
+    //     new_x = right_bound + 5;
+    //   } else if (direction == "down") {
+    //     new_y = top_bound - 5;
+    //   } else {
+    //     new_y = bottom_bound + 5;
+    //   }
+    // }
 
   }
 
