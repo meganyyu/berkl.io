@@ -8,7 +8,7 @@ play_button.onclick = play;
 
 // HOW TO WINDOW
 // Get the modal
-var modal = document.getElementById("how-to-window");
+var modal = document.getElementById("modal");
 // Get the button that opens the modal
 var btn = document.getElementById("how-to");
 // Get the <span> element that closes the modal
