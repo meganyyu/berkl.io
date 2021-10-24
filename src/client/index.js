@@ -13,6 +13,19 @@ const lostText = document.getElementById('lost');
 // Return a two dimensional drawing context
 const ctx = board.getContext("2d");
 
+const tileAtlas = new Image(); // temporary test tile for static tilemap
+tileAtlas.src = '../assets/random-tile.png';
+
+const map = {
+    cols: 21, // known width of full map
+    rows: 14, // known height of full map
+    tsize: board.width / 14, // temporary tile size for static tilemap
+    tiles: Array.from(Array(21 * 14).keys()), // array noting what type of tile in each position
+    getTile: function (col, row) { // helper for fetching specific location's tile
+        return this.tiles[row * map.cols + col];
+    }
+};
+
 // Array of the head bear and its cubs.
 // First element is the head.
 let bear_family = [
@@ -91,6 +104,7 @@ function main() {
   changing_direction = false;
   setTimeout(function onTick() {
     clear_board();
+    render(); // TODO: move render code into this function
     draw_obstacles();
     draw_cubs();
     move_family();
@@ -188,6 +202,31 @@ function display_score(found, left) {
   lostText.innerHTML = "Cubs Left: " + cubs_left;
 }
 
+// Runs game rendering
+function render() {
+    // TODO: return instead of rendering if something wrong with current state
+  
+    // Draw background
+    renderBackground();
+  
+    // TODO: move player and obstacle rendering here
+}
+
+// Draws all the background tiles in the map onto the screen.
+function renderBackground() {
+    for (let c = 0; c < map.cols; c++) {
+        for (let r = 0; r < map.rows; r++) {
+            const tile = map.getTile(c, r);
+            ctx.drawImage(
+                tileAtlas, // image
+                c * map.tsize,  // target x
+                r * map.tsize, // target y
+                map.tsize, // target width
+                map.tsize // target height
+            );
+        }
+    }
+}
 
 // MOVEMENT FUNCTIONS
 
@@ -284,24 +323,24 @@ function move_family() {
 // GAME ENDING RELATED
 
 function has_game_ended() {
-  for (let i = 4; i < bear_family.length; i++) {
-    if (bear_family[i].x === bear_family[0].x && bear_family[i].y === bear_family[0].y) return true
+    for (let i = 4; i < bear_family.length; i++) {
+      if (bear_family[i].x === bear_family[0].x && bear_family[i].y === bear_family[0].y) return true
+    }
+    const hitLeftWall = bear_family[0].x < 0;
+    const hitRightWall = bear_family[0].x > board.width - 10;
+    const hitToptWall = bear_family[0].y < 0;
+    const hitBottomWall = bear_family[0].y > board.height - 10;
+    // If there are no more cubs to be adopted.
+    const noMoreCubs = cubs_left === 0;
+  
+    if (hitLeftWall || hitRightWall || hitToptWall || hitBottomWall) {
+      return 2;
+    } else if (noMoreCubs) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
-  const hitLeftWall = bear_family[0].x < 0;
-  const hitRightWall = bear_family[0].x > board.width - 10;
-  const hitToptWall = bear_family[0].y < 0;
-  const hitBottomWall = bear_family[0].y > board.height - 10;
-  // If there are no more cubs to be adopted.
-  const noMoreCubs = cubs_left === 0;
-
-  if (hitLeftWall || hitRightWall || hitToptWall || hitBottomWall) {
-    return 2;
-  } else if (noMoreCubs) {
-    return 1;
-  } else {
-    return 0;
-  }
-}
 
 // UTILITIES
 // Returns a random coordinate given a minimum and a maximum.
