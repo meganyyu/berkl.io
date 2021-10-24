@@ -26,7 +26,7 @@ let cubs_found = 0;
 // True if changing direction.
 let changing_direction = false;
 // Velocities
-let dx = 10;
+let dx = 18;
 let dy = 0;
 // Direction
 let direction = 'right';
@@ -57,7 +57,7 @@ function main() {
       draw_bear();
       // Repeat
       main();
-  }, 100)
+  }, 150)
 }
 
 
@@ -91,8 +91,8 @@ function draw_cubs() {
       img1,
       cubs[i].x,
       cubs[i].y,
-      11,
-      11,
+      15,
+      15,
     );
   }
 }
@@ -104,10 +104,10 @@ function draw_bear_part(bear_part, is_head) {
   let size;
   if (is_head) {
     type = 'hen';
-    size = 16;
+    size = 24;
   } else {
     type = 'chick';
-    size = 11;
+    size = 14;
   }
 
   // Different image used depending on direction and is_head.
@@ -137,28 +137,28 @@ function change_direction(event) {
   if (changing_direction) return;
   changing_direction = true;
   const keyPressed = event.keyCode;
-  const goingUp = dy === -10;
-  const goingDown = dy === 10;
-  const goingRight = dx === 10;
-  const goingLeft = dx === -10;
+  const goingUp = dy === -18;
+  const goingDown = dy === 18;
+  const goingRight = dx === 18;
+  const goingLeft = dx === -18;
   if (keyPressed === LEFT_KEY && !goingRight) {
-    dx = -10;
+    dx = -18;
     dy = 0;
     direction = 'left';
   }
   if (keyPressed === UP_KEY && !goingDown) {
     dx = 0;
-    dy = -10;
+    dy = -18;
     direction = 'back';
   }
   if (keyPressed === RIGHT_KEY && !goingLeft) {
-    dx = 10;
+    dx = 18;
     dy = 0;
     direction = 'right';
   }
   if (keyPressed === DOWN_KEY && !goingUp) {
     dx = 0;
-    dy = 10;
+    dy = 18;
     direction = 'front';
   }
 }
@@ -171,7 +171,7 @@ function move_family() {
   bear_family.unshift(head);
   var has_found_cub = false;
   for (let i = 0; i < cubs.length; i++) {
-    if (bear_family[0].x === cubs[i].x && bear_family[0].y === cubs[i].y) {
+    if (Math.abs(bear_family[0].x - cubs[i].x) < 15 && Math.abs(bear_family[0].y - cubs[i].y) < 15) {
       has_found_cub = true;
       // Removes found cub from cubs array.
       cubs.splice(i, 1);
