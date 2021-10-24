@@ -1,6 +1,7 @@
 /* -----------------------------------------------
 /* Resources Referenced : Educative  - educative.io
 /* Resource Link : https://www.educative.io/blog/javascript-snake-game-tutorial
+/* Tilemaps technique based on: https://developer.mozilla.org/en-US/docs/Games/Techniques/Tilemaps
 /* ----------------------------------------------- */
 
 // GLOBAL VARIABLES
