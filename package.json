@@ -1,0 +1,26 @@
+{
+  "name": "berkl.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server/server.js",
+  "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "develop": "cross-env NODE_ENV=development nodemon src/server/server.js",
+    "start": "cross-env NODE_ENV=production nodemon src/server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Cindy Liu, Joon Park, Megan Yu",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/node": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "babel-loader": "^8.2.3",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.14",
+    "webpack": "^5.59.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-merge": "^5.8.0"
+  }
+}
