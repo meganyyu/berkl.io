@@ -4,6 +4,10 @@ body {
   text-shadow: 2px 2px 4px #000000;
 }
 
+#how-to-window {
+  margin: auto;
+}
+
 #entry {
   position: absolute;
   top: 50%;
