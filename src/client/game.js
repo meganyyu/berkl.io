@@ -128,11 +128,11 @@ document.addEventListener("keydown", change_direction);
 function main() {
 
   if (has_game_ended() === 2) {
-    modal_content.innerHTML = "You hit a wall. Game over!";
+    modal_content.innerHTML = "<img src='../../../public/assets/gameover.png'>";
     modal.style.display = "block";
     return;
   } else if (has_game_ended() === 1) {
-    modal_content.innerHTML = "Congrats! You found all the cubs!";
+    modal_content.innerHTML = "<img src='../../../public/assets/win.png'>";
     modal.style.display = "block";
     return;
   }
