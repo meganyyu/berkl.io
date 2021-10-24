@@ -148,7 +148,7 @@ img {
 }
 
 /* HOW TO WINDOW */
-#modal {
+#modal_landing {
   /* positioning */
   display: none; /* Hidden by default */
   position: absolute;; /* Stay in place */
