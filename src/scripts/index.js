@@ -4,9 +4,6 @@ const board = document.getElementById("board");
 // Return a two dimensional drawing context
 const ctx = board.getContext("2d");
 
-// Direction to image mapping.
-const img_map = ['right', 'back', 'front', 'left'];
-
 // Array of the head bear and its cubs.
 // First element is the head.
 let bear_family = [
