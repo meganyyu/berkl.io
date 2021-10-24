@@ -8,7 +8,7 @@ const ctx = board.getContext("2d");
 // Array of the head bear and its cubs.
 // First element is the head.
 let bear_family = [
-  {x: 160, y: 200}
+  {x: board.width / 2, y: board.height / 2}
 ];
 
 // Array of the cubs on the screen, not yet in a family.
@@ -17,9 +17,14 @@ let cubs = [
 ];
 // Set up 20 cubs with random coordinates.
 for (let i = 0; i < 15; i++) {
-  const cub = {x: random_loc(0, board.width - 10), y: random_loc(0, board.height - 10)};
-  cubs.unshift(cub);
+  const cub = {x: random_loc(10, board.width - 10), y: random_loc(10, board.height - 10)};
+  cubs.push(cub);
 }
+
+// Array of obstacles on the map.
+let obstacles = [
+  {x: 100, y: 100, width: 100, height: 100}
+];
 
 // Score
 let cubs_found = 0;
@@ -34,6 +39,7 @@ let direction = 'right';
 // CALLS TO START GAME
 // Start game + draw the cubs.
 main();
+draw_obstacles();
 draw_cubs();
 // Family changes direction when any arrow key is pressed.
 document.addEventListener("keydown", change_direction);
@@ -52,6 +58,7 @@ function main() {
     changing_direction = false;
     setTimeout(function onTick() {
       clear_board();
+      draw_obstacles();
       draw_cubs();
       move_family();
       draw_bear();
@@ -70,17 +77,6 @@ function clear_board() {
   ctx.strokeRect(0, 0, board.width, board.height);
 }
 
-// Draw the bear family on the canvas.
-function draw_bear() {
-  for (let i = 0; i < bear_family.length; i++) {
-    if (i === 0) {
-      draw_bear_part(bear_family[i], true);
-    } else {
-      draw_bear_part(bear_family[i], false);
-    }
-  }
-}
-
 // Draws all the unadopted cubs in the cubs array onto the screen.
 function draw_cubs() {
   for (let i = 0; i < cubs.length; i++) {
@@ -94,6 +90,33 @@ function draw_cubs() {
       15,
       15,
     );
+  }
+}
+
+// Draws all the obstacles in the obstacles array onto the screen.
+function draw_obstacles() {
+  for (let i = 0; i < obstacles.length; i++) {
+    var img1 = new Image(350, 200); // Image constructor
+    img1.src = '../assets/obstacle.png';
+
+    ctx.drawImage(
+      img1,
+      obstacles[i].x,
+      obstacles[i].y,
+      350,
+      200,
+    );
+  }
+}
+
+// Draw the bear family on the canvas.
+function draw_bear() {
+  for (let i = 0; i < bear_family.length; i++) {
+    if (i === 0) {
+      draw_bear_part(bear_family[i], true);
+    } else {
+      draw_bear_part(bear_family[i], false);
+    }
   }
 }
 
@@ -171,7 +194,7 @@ function move_family() {
   bear_family.unshift(head);
   var has_found_cub = false;
   for (let i = 0; i < cubs.length; i++) {
-    if (Math.abs(bear_family[0].x - cubs[i].x) < 15 && Math.abs(bear_family[0].y - cubs[i].y) < 15) {
+    if (Math.abs(bear_family[0].x - cubs[i].x) < 10 && Math.abs(bear_family[0].y - cubs[i].y) < 10) {
       has_found_cub = true;
       // Removes found cub from cubs array.
       cubs.splice(i, 1);
