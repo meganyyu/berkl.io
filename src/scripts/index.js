@@ -41,7 +41,7 @@ draw_cubs();
 document.addEventListener("keydown", change_direction);
 
 // MAIN
-// main function called repeatedly to keep the game running
+// Main function called repeatedly to keep the game running.
 function main() {
 
     if (has_game_ended()) return;
@@ -67,9 +67,8 @@ function clear_board() {
   ctx.strokeRect(0, 0, board.width, board.height);
 }
 
-// Draw the snake on the canvas
+// Draw the bear family on the canvas.
 function draw_bear() {
-  // Draw each part
   bear_family.forEach(draw_bear_part)
 }
 
@@ -90,15 +89,16 @@ function draw_cubs() {
 }
 
 // Draws one bear part
-function draw_bear_part(snakePart) {
+function draw_bear_part(bear_part) {
 
-  var img1 = new Image(); // Image constructor
+  var img1 = new Image();
+  // Different image used depending on direction.
   img1.src = '../assets/blckbear-hen-' + direction + '.png';
 
   ctx.drawImage(
     img1,
-    snakePart.x,
-    snakePart.y,
+    bear_part.x,
+    bear_part.y,
     15,
     15,
   );
@@ -113,8 +113,7 @@ function change_direction(event) {
   const UP_KEY = 38;
   const DOWN_KEY = 40;
 
-// Prevent the snake from reversing
-
+  // Prevent the family from reversing
   if (changing_direction) return;
   changing_direction = true;
   const keyPressed = event.keyCode;
