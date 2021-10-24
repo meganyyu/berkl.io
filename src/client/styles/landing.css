@@ -11,13 +11,88 @@ body {
   transform: translate(-50%, -50%);
   width: 50vw;
   height: 35vw;
-  background-color: #6495ED;
+  background-color: #3B7EA1;
   border-radius: 3%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   padding: 1%;
+  z-index: 1;
+}
+
+#draw-board {
+  position: absolute;
+  z-index: 0;
+  background-color: #FDB515;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  overflow: hidden;
+}
+
+.col {
+  padding: 4%;
+}
+
+.one {
+  animation-name: spin2;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.two {
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.three {
+  animation-name: spin2;
+  animation-duration: 7000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.four {
+  animation-name: spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.five {
+  animation-name: spin2;
+  animation-duration: 3000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.six {
+  animation-name: spin2;
+  animation-duration: 10000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from { transform:rotate(0deg); }
+  to { transform:rotate(360deg); }
+}
+
+@keyframes spin2 {
+  from { transform:rotate(360deg); }
+  to { transform:rotate(0deg); }
 }
 
 #selection {
@@ -54,15 +129,7 @@ body {
 	to { transform: scale(1.5); }
 }
 
-
-.how-to {
-}
-
 img {
   max-height: 80%;
   max-width: 100%;
-}
-
-h1 {
-
 }
