@@ -4,16 +4,19 @@ const board = document.getElementById("board");
 // Return a two dimensional drawing context
 const ctx = board.getContext("2d");
 
+// Direction to image mapping.
+const img_map = ['right', 'back', 'front', 'left'];
+
 // Array of the head bear and its cubs.
 // First element is the head.
 let bear_family = [
   {x: 160, y: 200}
-]
+];
 
 // Array of the cubs on the screen, not yet in a family.
 let cubs = [
 
-]
+];
 // Set up 20 cubs with random coordinates.
 for (let i = 0; i < 20; i++) {
   const cub = {x: random_loc(0, board.width - 10), y: random_loc(0, board.width - 10)};
@@ -28,7 +31,7 @@ let changing_direction = false;
 let dx = 10;
 let dy = 0;
 // Direction
-let direction = 0;
+let direction = 'right';
 
 // CALLS TO START GAME
 // Start game + draw the cubs.
@@ -74,7 +77,7 @@ function draw_bear() {
 function draw_cubs() {
   for (let i = 0; i < cubs.length; i++) {
     var img1 = new Image(); // Image constructor
-    img1.src = '../assets/bear1.svg';
+    img1.src = '../assets/blckbear-hen-front.png';
 
     ctx.drawImage(
       img1,
@@ -90,7 +93,7 @@ function draw_cubs() {
 function draw_bear_part(snakePart) {
 
   var img1 = new Image(); // Image constructor
-  img1.src = '../assets/bear1.svg';
+  img1.src = '../assets/blckbear-hen-' + direction + '.png';
 
   ctx.drawImage(
     img1,
@@ -122,22 +125,22 @@ function change_direction(event) {
   if (keyPressed === LEFT_KEY && !goingRight) {
     dx = -10;
     dy = 0;
-    direction = 3;
+    direction = 'left';
   }
   if (keyPressed === UP_KEY && !goingDown) {
     dx = 0;
     dy = -10;
-    direction = 1;
+    direction = 'back';
   }
   if (keyPressed === RIGHT_KEY && !goingLeft) {
     dx = 10;
     dy = 0;
-    direction = 0;
+    direction = 'right';
   }
   if (keyPressed === DOWN_KEY && !goingUp) {
     dx = 0;
     dy = 10;
-    direction = 2;
+    direction = 'front';
   }
 }
 
