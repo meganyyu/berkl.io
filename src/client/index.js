@@ -1,5 +1,6 @@
 // SELECTION
 const blck_button = document.getElementById('blck');
+window.name = 'brwn';
 function set_blck() {
   window.name = 'blck';
 }
