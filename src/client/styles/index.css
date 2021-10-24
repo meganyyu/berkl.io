@@ -1,10 +1,35 @@
+body {
+  font-family: 'Fredoka One', cursive;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  background-color: #3B7EA1;
+}
+
 #board {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 3%;
 }
 .score {
   text-align: center;
   font-size: 18px;
+}
+
+/* GAME END WINDOW */
+.modal {
+  display: none; /* Hidden by default */
+  position: absolute;; /* Stay in place */
+  z-index: 2; /* Sit on top */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #DDD5C7; /* Fallback color */
+  color: #003262;
+  text-shadow: none;
+  padding: 1%;
+  margin: 1%;
+  border-radius: 4%;
 }

@@ -80,12 +80,12 @@ document.addEventListener("keydown", change_direction);
 function main() {
 
   if (has_game_ended() === 2) {
-    foundText.innerHTML = "You hit a wall. Game over!";
-    lostText.style.visibility = "hidden";
+    modal_content.innerHTML = "You hit a wall. Game over!";
+    modal.style.display = "block";
     return;
   } else if (has_game_ended() === 1) {
-    foundText.innerHTML = "Congrats! You found all the cubs!";
-    lostText.style.visibility = "hidden";
+    modal_content.innerHTML = "Congrats! You found all the cubs!";
+    modal.style.display = "block";
     return;
   }
   changing_direction = false;
@@ -301,6 +301,17 @@ function has_game_ended() {
   } else {
     return 0;
   }
+}
+
+// Pop up for when the game ends
+// HOW TO WINDOW
+// Get the modal
+var modal = document.getElementById("game-end-window");
+// Modal content / where the result goes
+var modal_content = document.getElementById("modal-content");
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
 }
 
 // UTILITIES
