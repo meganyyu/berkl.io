@@ -14,8 +14,22 @@ const lostText = document.getElementById('lost');
 // Return a two dimensional drawing context
 const ctx = board.getContext("2d");
 
-const tileAtlas = new Image(); // temporary test tile for static tilemap
-tileAtlas.src = '../../../public/assets/random-tile.png';
+const tileAtlas = [];
+for (let i = 1; i < 295; i++) {
+  const new_img = new Image();
+  let num;
+  if (i < 10) {
+    num = '00' + i;
+  } else if (i < 100) {
+    num = '0' + i;
+  } else {
+    num = i;
+  }
+  new_img.src = '../../../public/assets/final-map-' + num + '.png'
+  tileAtlas.push(new_img);
+}
+// const tileAtlas = new Image(); // temporary test tile for static tilemap
+// tileAtlas.src = '../../../public/assets/random-tile.png';
 
 const map = {
     cols: 21, // known width of full map
@@ -35,7 +49,7 @@ let bear_family = [
 
 // Array of obstacles on the map.
 let obstacles = [
-  {x: 100, y: 100, width: 300, height: 200, src: '../../../public/assets/obstacle.png'}
+  // {x: 100, y: 100, width: 300, height: 200, src: '../../../public/assets/obstacle.png'}
 ];
 
 // Number of cubs left.
@@ -206,25 +220,27 @@ function display_score(found, left) {
 // Runs game rendering
 function render() {
     // TODO: return instead of rendering if something wrong with current state
-  
+
     // Draw background
     renderBackground();
-  
+
     // TODO: move player and obstacle rendering here
 }
 
 // Draws all the background tiles in the map onto the screen.
 function renderBackground() {
-    for (let c = 0; c < map.cols; c++) {
-        for (let r = 0; r < map.rows; r++) {
+    let i = 0;
+    for (let r = 0; r < map.rows; r++) {
+        for (let c = 0; c < map.cols; c++) {
             const tile = map.getTile(c, r);
             ctx.drawImage(
-                tileAtlas, // image
+                tileAtlas[i], // image
                 c * map.tsize,  // target x
                 r * map.tsize, // target y
                 map.tsize, // target width
                 map.tsize // target height
             );
+            i += 1;
         }
     }
 }
@@ -333,7 +349,7 @@ function has_game_ended() {
     const hitBottomWall = bear_family[0].y > board.height - 10;
     // If there are no more cubs to be adopted.
     const noMoreCubs = cubs_left === 0;
-  
+
     if (hitLeftWall || hitRightWall || hitToptWall || hitBottomWall) {
       return 2;
     } else if (noMoreCubs) {
