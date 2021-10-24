@@ -28,7 +28,7 @@ h_button.onclick = set_h;
 const play_button = document.getElementById('play');
 // Clicking the play button leads to main game page
 function play() {
-  if (window.name != 'blck' || window.name != 'brwn' || window.name != 'h') {
+  if (window.name != 'blck' && window.name != 'brwn' && window.name != 'h') {
     alert("Please choose a type of bear!");
     return;
   }
