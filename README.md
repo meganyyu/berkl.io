@@ -3,11 +3,11 @@
     berkl.io
 </h1>
 
-A Berkeley-themed rendition of the Snake game. Collect the Cal Cubs!
+A Berkeley-themed rendition of the Snake game. You are a professor bear that lost all their student cubs on the UC Berkeley campus. Explore the campus and find all your cubs!
 
-Built at CalHacks 8.0 with [Node.js](https://nodejs.org/), [socket.io](https://socket.io/), and [HTML5 Canvas](https://www.w3schools.com/html/html5_canvas.asp).
+Built at CalHacks 8.0 with [JavaScript](https://www.javascript.com/), [Node.js](https://nodejs.org/), and [HTML5 Canvas](https://www.w3schools.com/html/html5_canvas.asp).
 
-## To play the game!
+## How To Play
 Go to https://meganyyu.github.io/berkl.io/
 
 ## Development
@@ -19,8 +19,6 @@ To get started, ensure you have Node and NPM installed. Then run the following:
 $ npm install
 $ npm run develop
 ```
-
-on your local machine.
 
 To run the project in a production setting, run the following:
 
