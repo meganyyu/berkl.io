@@ -2,7 +2,7 @@
 const play_button = document.getElementById('play');
 // Clicking the play button leads to main game page
 function play() {
-  window.location.href = 'game.html';
+  window.location.href = 'src/client/html/game.html';
 }
 play_button.onclick = play;
 

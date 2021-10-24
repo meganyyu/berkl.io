@@ -15,7 +15,7 @@ const lostText = document.getElementById('lost');
 const ctx = board.getContext("2d");
 
 const tileAtlas = new Image(); // temporary test tile for static tilemap
-tileAtlas.src = '../assets/random-tile.png';
+tileAtlas.src = '../../../public/assets/random-tile.png';
 
 const map = {
     cols: 21, // known width of full map
@@ -35,7 +35,7 @@ let bear_family = [
 
 // Array of obstacles on the map.
 let obstacles = [
-  {x: 100, y: 100, width: 300, height: 200, src: '../assets/obstacle.png'}
+  {x: 100, y: 100, width: 300, height: 200, src: '../../../public/assets/obstacle.png'}
 ];
 
 // Number of cubs left.
@@ -129,7 +129,7 @@ function clear_board() {
 function draw_cubs() {
   for (let i = 0; i < cubs.length; i++) {
     var img1 = new Image(); // Image constructor
-    img1.src = '../assets/blckbear-chick-front.png';
+    img1.src = '../../../public/assets/blckbear-chick-front.png';
 
     ctx.drawImage(
       img1,
@@ -185,7 +185,7 @@ function draw_bear_part(bear_part, is_head) {
 
   // Different image used depending on direction and is_head.
   var img1 = new Image();
-  img1.src = '../assets/blckbear-' + type + '-' + direction + '.png';
+  img1.src = '../../../public/assets/blckbear-' + type + '-' + direction + '.png';
 
   // Draw the image.
   ctx.drawImage(
