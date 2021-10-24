@@ -1,0 +1,68 @@
+body {
+  font-family: 'Fredoka One', cursive;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+#entry {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 35vw;
+  background-color: #6495ED;
+  border-radius: 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1%;
+}
+
+#selection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2%;
+}
+
+.choice {
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+.choice:hover {
+  animation-name: wave;
+  animation-duration: 1s;
+}
+
+/* TODO: PART 2 - Create wave animation */
+@keyframes wave {
+	0% { transform: translateY(0); }
+	50% { transform: translateY(-40px); }
+	100% { transform: translateY(0); }
+}
+
+.play:hover {
+  animation-name: pulse;
+	animation-duration: 0.5s;
+}
+
+@keyframes pulse {
+	from { transform: scale(1); }
+	to { transform: scale(1.5); }
+}
+
+
+.how-to {
+}
+
+img {
+  max-height: 80%;
+  max-width: 100%;
+}
+
+h1 {
+
+}
