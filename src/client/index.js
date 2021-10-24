@@ -13,24 +13,43 @@ const ctx = board.getContext("2d");
 // Array of the head bear and its cubs.
 // First element is the head.
 let bear_family = [
-  // {x: board.width / 2, y: board.height / 2}
-  {x: 100, y: 100}
+  {x: 500, y: 500}
+];
+
+// Array of obstacles on the map.
+let obstacles = [
+  {x: 100, y: 100, width: 300, height: 200, src: '../assets/obstacle.png'}
 ];
 
 // Array of the cubs on the screen, not yet in a family.
 let cubs = [
 
 ];
-// Set up 20 cubs with random coordinates.
+// Set up cubs with random coordinates.
 for (let i = 0; i < 15; i++) {
-  const cub = {x: random_loc(10, board.width - 10), y: random_loc(10, board.height - 10)};
+  let pos_x = random_loc(10, board.width - 24);
+  let pos_y = random_loc(10, board.height - 24);
+
+  let bear_center_x = pos_x + 7;
+  let bear_center_y = pos_y + 7;
+  // Check if the cubs are in the way of the obstacles' locations.
+  for (let j = 0; j < obstacles.length; j++) {
+    let top_bound = obstacles[j].y;
+    let bottom_bound = obstacles[j].y + obstacles[j].height;
+    let left_bound = obstacles[j].x;
+    let right_bound = obstacles[j].x + obstacles[j].width;
+
+    while (bear_center_x < right_bound && bear_center_x > left_bound && bear_center_y > top_bound && bear_center_y < bottom_bound) {
+      pos_x = random_loc(10, board.width - 24);
+      pos_y = random_loc(10, board.height - 24);
+      bear_center_x = pos_x + 7;
+      bear_center_y = pos_y + 7;
+    }
+  }
+
+  const cub = {x: pos_x, y: pos_y};
   cubs.push(cub);
 }
-
-// Array of obstacles on the map.
-let obstacles = [
-  {x: 100, y: 100, width: 300, height: 200, src: '../assets/obstacle.png'}
-];
 
 // Score
 let cubs_found = 0;
@@ -54,22 +73,22 @@ document.addEventListener("keydown", change_direction);
 // Main function called repeatedly to keep the game running.
 function main() {
 
-    if (has_game_ended() === 2) {
-      top_text.innerHTML = "You hit a wall. Game over!";
-      return;
-    } else if (has_game_ended() === 1) {
-      top_text.innerHTML = "Congrats! You found all the cubs!";
-      return;
-    }
-    changing_direction = false;
-    setTimeout(function onTick() {
-      clear_board();
-      draw_obstacles();
-      draw_cubs();
-      move_family();
-      draw_bear();
-      // Repeat
-      main();
+  if (has_game_ended() === 2) {
+    top_text.innerHTML = "You hit a wall. Game over!";
+    return;
+  } else if (has_game_ended() === 1) {
+    top_text.innerHTML = "Congrats! You found all the cubs!";
+    return;
+  }
+  changing_direction = false;
+  setTimeout(function onTick() {
+    clear_board();
+    draw_obstacles();
+    draw_cubs();
+    move_family();
+    draw_bear();
+    // Repeat
+    main();
   }, 150)
 }
 
