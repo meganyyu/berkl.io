@@ -129,6 +129,36 @@ body {
 	to { transform: scale(1.5); }
 }
 
+/* HOW TO WINDOW */
+.modal {
+  display: none; /* Hidden by default */
+  position: absolute;; /* Stay in place */
+  z-index: 2; /* Sit on top */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #DDD5C7; /* Fallback color */
+  color: #003262;
+  text-shadow: none;
+  padding: 1%;
+  margin: 1%;
+  border-radius: 4%;
+}
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 img {
   max-height: 80%;
   max-width: 100%;
