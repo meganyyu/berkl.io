@@ -200,7 +200,7 @@ function move_family() {
   let bear_center_x = new_x + 12;
   let bear_center_y = new_y + 12;
 
-  // Check if new coordinates hit obstacle. If they, do update accordingly.
+  // Check if new coordinates hit any obstacles. If they, do update accordingly.
   for (let i = 0; i < obstacles.length; i++) {
     let top_bound = obstacles[i].y;
     let bottom_bound = obstacles[i].y + obstacles[i].height;
@@ -218,29 +218,6 @@ function move_family() {
         new_y = bottom_bound + 5;
       }
     }
-
-    // if (bear_right_bound > left_bound && bear_left_bound  && bear_top_bound > top_bound && bear_bottom_bound < bottom_bound) {
-    //   new_x = left_bound - 29;
-    // } else if (bear_right_bound > left_bound && bear_top_bound > top_bound && bear_bottom_bound < bottom_bound) {
-    //   new_x = right_bound + 5;
-    // } else if (bear_bottom_bound > top_bound && bear_left_bound > left_bound && bear_right_bound < right_bound) {
-    //   new_y = top_bound - 29;
-    // } else if (bear_top_bound < bottom_bound && bear_left_bound > left_bound && bear_right_bound < right_bound) {
-    //   new_y = bottom_bound + 5
-    // }
-    //
-    // if (new_x > left_bound && new_x < right_bound && new_y > top_bound && new_y < bottom_bound) {
-    //   if (direction == "right") {
-    //     new_x = left_bound - 5;
-    //   } else if (direction == "left") {
-    //     new_x = right_bound + 5;
-    //   } else if (direction == "down") {
-    //     new_y = top_bound - 5;
-    //   } else {
-    //     new_y = bottom_bound + 5;
-    //   }
-    // }
-
   }
 
   // Creates the new family's head.
