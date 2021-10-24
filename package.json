@@ -2,11 +2,11 @@
   "name": "berkl.io",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server/server.js",
+  "main": "src/client/index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "develop": "cross-env NODE_ENV=development nodemon src/server/server.js",
-    "start": "cross-env NODE_ENV=production nodemon src/server/server.js",
+    "develop": "cross-env NODE_ENV=development nodemon src/client/index.js",
+    "start": "cross-env NODE_ENV=production nodemon src/client/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
