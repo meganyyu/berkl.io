@@ -150,12 +150,14 @@ function draw_bear_part(bear_part, is_head) {
   // Determine type of file to use and size of image depending on is_head.
   let type;
   let size;
+  let adjustment = 0;
   if (is_head) {
     type = 'hen';
     size = 24;
   } else {
     type = 'chick';
     size = 14;
+    adjustment = 5;
   }
 
   // Different image used depending on direction and is_head.
@@ -165,8 +167,8 @@ function draw_bear_part(bear_part, is_head) {
   // Draw the image.
   ctx.drawImage(
     img1,
-    bear_part.x,
-    bear_part.y,
+    bear_part.x + adjustment,
+    bear_part.y + adjustment,
     size,
     size,
   );
