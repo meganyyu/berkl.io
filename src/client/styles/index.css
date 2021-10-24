@@ -4,7 +4,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-#score {
+.score {
   text-align: center;
-  font-size: 40px;
+  font-size: 18px;
 }

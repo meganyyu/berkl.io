@@ -8,7 +8,8 @@
 const board = document.getElementById("board");
 board.width = window.innerWidth * 0.85;
 board.height = window.innerHeight * 0.85;
-const top_text = document.getElementById('score');
+const foundText = document.getElementById('found');
+const lostText = document.getElementById('lost');
 // Return a two dimensional drawing context
 const ctx = board.getContext("2d");
 
@@ -23,12 +24,14 @@ let obstacles = [
   {x: 100, y: 100, width: 300, height: 200, src: '../assets/obstacle.png'}
 ];
 
+// Number of cubs left.
+let cubs_left = 15;
 // Array of the cubs on the screen, not yet in a family.
 let cubs = [
 
 ];
 // Set up cubs with random coordinates.
-for (let i = 0; i < 15; i++) {
+for (let i = 0; i < cubs_left; i++) {
   let pos_x = random_loc(10, board.width - 24);
   let pos_y = random_loc(10, board.height - 24);
 
@@ -68,6 +71,7 @@ let direction = 'right';
 main();
 draw_obstacles();
 draw_cubs();
+display_score(cubs_found, cubs_left);
 // Family changes direction when any arrow key is pressed.
 document.addEventListener("keydown", change_direction);
 
@@ -176,6 +180,13 @@ function draw_bear_part(bear_part, is_head) {
   );
 }
 
+// Displays score
+function display_score(found, left) {
+  foundText.innerHTML = "Cubs Found: " + cubs_found;
+  lostText.innerHTML = "Cubs Left: " + cubs_left;
+}
+
+
 // MOVEMENT FUNCTIONS
 
 // Changes direction of the family accordingly when key is pressed.
@@ -253,6 +264,7 @@ function move_family() {
       has_found_cub = true;
       // Removes found cub from cubs array.
       cubs.splice(i, 1);
+      cubs_left -= 1;
       break;
     }
   }
@@ -260,7 +272,7 @@ function move_family() {
     // Increase score
     cubs_found += 1;
     // Display score on screen
-    top_text.innerHTML = cubs_found;
+    display_score(cubs_found, cubs_left);
   } else {
     // Remove the last part of family body
     bear_family.pop();
@@ -278,7 +290,7 @@ function has_game_ended() {
   const hitToptWall = bear_family[0].y < 0;
   const hitBottomWall = bear_family[0].y > board.height - 10;
   // If there are no more cubs to be adopted.
-  const noMoreCubs = cubs.length === 0;
+  const noMoreCubs = cubs_left === 0;
 
   if (hitLeftWall || hitRightWall || hitToptWall || hitBottomWall) {
     return 2;
