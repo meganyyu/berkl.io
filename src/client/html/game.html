@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Meta data -->
+  	<title>berkl.io</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles/index.css">
+  </head>
+  <body>
+    <!-- Scoreboard -->
+    <div class="score" id="found">Cubs Found: 0</div>
+    <div class="score" id="lost">Cubs Left: 0</div>
+
+    <!-- Canvas -->
+    <canvas id="board" width="1300" height="600"></canvas>
+
+    <!-- Modal window that pops up at the end of the game -->
+    <div id="game-end-window" class="modal">
+      <!-- Modal content -->
+      <div id="modal-content">
+        <!-- Game results go here -->
+      </div>
+      <!-- Play again button -->
+      <div class="button" id="again">
+        <h2>PLAY AGAIN</h2>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="../game.js"></script>
+</html>
