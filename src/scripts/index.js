@@ -180,7 +180,9 @@ function has_game_ended() {
   const hitRightWall = bear_family[0].x > board.width - 10;
   const hitToptWall = bear_family[0].y < 0;
   const hitBottomWall = bear_family[0].y > board.height - 10;
-  return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
+  // If there are no more cubs to be adopted.
+  const noMoreCubs = cubs.length === 0;
+  return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall || noMoreCubs;
 }
 
 // UTILITIES
