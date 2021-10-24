@@ -207,7 +207,7 @@ function move_family() {
         new_x = left_bound - 29;
       } else if (direction == "left") {
         new_x = right_bound + 5;
-      } else if (direction == "down") {
+      } else if (direction == "front") {
         new_y = top_bound - 29;
       } else {
         new_y = bottom_bound + 5;
