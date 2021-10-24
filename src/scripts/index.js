@@ -188,9 +188,31 @@ function change_direction(event) {
 
 // Moves the bear family.
 function move_family() {
-  // Creates the new family's head.
   let new_x = bear_family[0].x + dx;
   let new_y = bear_family[0].y + dy;
+
+  // Check if new coordinates hit obstacle. If they, do update accordingly.
+  for (let i = 0; i < obstacles.length; i++) {
+    top_bound = obstacles[i].y;
+    bottom_bound = obstacles[i].y + obstacles[i].height;
+    left_bound = obstacles[i].x;
+    right_bound = obstacles[i].x + obstacles[i].width;
+
+    if (new_x > left_bound && new_x < right_bound && new_y > top_bound && new_y < bottom_bound) {
+      if (direction === "right") {
+        new_x = left_bound - 5;
+      } else if (direction == "left") {
+        new_x = right_bound + 5;
+      } else if (direction === "down") {
+        new_y = top_bound - 5;
+      } else {
+        new_y = bottom_bound + 5;
+      }
+    }
+
+  }
+
+  // Creates the new family's head.
   const head = {x: new_x, y: new_y};
   // Add the new head to the beginning of family.
   bear_family.unshift(head);
