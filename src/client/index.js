@@ -84,6 +84,7 @@ let dy = 0;
 let direction = 'right';
 
 // CALLS TO START GAME
+// _previousElapsed = 0; // last time camera updated
 // Start game + draw the cubs.
 main();
 draw_obstacles();
@@ -108,6 +109,12 @@ function main() {
   changing_direction = false;
   setTimeout(function onTick() {
     clear_board();
+
+    // // compute delta time in seconds -- also cap it
+    // var delta = (elapsed - _previousElapsed) / 1000.0;
+    // delta = Math.min(delta, 0.25); // maximum delta of 250 ms
+    // _previousElapsed = elapsed;
+
     update_camera(); // delta
     render(); // TODO: move render code into this function
     draw_obstacles();
@@ -216,10 +223,12 @@ function Camera(map, width, height) {
     this.maxY = map.rows * map.tsize - height;
 }
 
+Camera.SPEED = 256; // pixels per second
+
 Camera.prototype.move = function (delta, dirx, diry) {
     // move camera
-    this.x += dirx;
-    this.y += diry;
+    this.x += dirx; // * Camera.SPEED * delta;
+    this.y += diry; // * Camera.SPEED * delta;
     // clamp values
     this.x = Math.max(0, Math.min(this.x, this.maxX));
     this.y = Math.max(0, Math.min(this.y, this.maxY));
@@ -392,4 +401,16 @@ function has_game_ended() {
 // Returns a random coordinate given a minimum and a maximum.
 function random_loc(min, max) {
   return Math.round((Math.random() * (max-min) + min) / 10) * 10;
+}
+
+// These functions assume that the camera points to the top left corner
+
+// Translates world coordinates to screen coordinates
+function worldToScreen(x, y) {
+    return {x: x - camera.x, y: y - camera.y};
+}
+  
+// Translates screen coordinates to world coordinates
+function screenToWorld(x,y) {
+    return {x: x + camera.x, y: y + camera.y};
 }
