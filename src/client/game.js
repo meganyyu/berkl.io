@@ -7,8 +7,6 @@
 // GLOBAL VARIABLES
 // Get HTML elements.
 const board = document.getElementById("board");
-board.width = window.innerWidth * 0.85;
-board.height = window.innerHeight * 0.85;
 const foundText = document.getElementById('found');
 const lostText = document.getElementById('lost');
 // Return a two dimensional drawing context
@@ -28,8 +26,6 @@ for (let i = 1; i < 295; i++) {
   new_img.src = '../../../public/assets/final-map-' + num + '.png'
   tileAtlas.push(new_img);
 }
-// const tileAtlas = new Image(); // temporary test tile for static tilemap
-// tileAtlas.src = '../../../public/assets/random-tile.png';
 
 const map = {
     cols: 21, // known width of full map
@@ -49,7 +45,31 @@ let bear_family = [
 
 // Array of obstacles on the map.
 let obstacles = [
-  // {x: 100, y: 100, width: 300, height: 200, src: '../../../public/assets/obstacle.png'}
+  {x: 22, y: 225, width: 150, height: 80},
+  {x: 170, y: 200, width: 70, height: 80},
+  {x: 250, y: 190, width: 90, height: 70},
+  {x: 340, y: 150, width: 50, height: 70},
+  {x: 22, y: 370, width: 150, height: 160},
+  {x: 160, y: 490, width: 170, height: 100},
+  {x: 160, y: 350, width: 170, height: 50},
+  {x: 290, y: 330, width: 80, height: 120},
+  {x: 330, y: 300, width: 60, height: 50},
+  {x: 520, y: 200, width: 120, height: 80},
+  {x: 640, y: 100, width: 300, height: 80},
+  {x: 580, y: 160, width: 110, height: 60},
+  {x: 940, y: 160, width: 90, height: 120},
+  {x: 1030, y: 230, width: 70, height: 180},
+  {x: 1100, y: 280, width: 50, height: 150},
+  {x: 980, y: 280, width: 100, height: 50},
+  {x: 830, y: 160, width: 120, height: 50},
+  {x: 5, y: 510, width: 50, height: 60},
+  {x: 1150, y: 400, width: 40, height: 60},
+  {x: 610, y: 120, width: 40, height: 60},
+  {x: 1130, y: 570, width: 80, height: 40},
+  {x: 1230, y: 300, width: 80, height: 110},
+  {x: 1270, y: 410, width: 60, height: 110},
+  {x: 1240, y: 410, width: 40, height: 50},
+  {x: 215, y: 435, width: 45, height: 45}
 ];
 
 // Number of cubs left.
