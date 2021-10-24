@@ -23,7 +23,7 @@ for (let i = 0; i < 15; i++) {
 
 // Array of obstacles on the map.
 let obstacles = [
-  {x: 100, y: 100, width: 100, height: 100}
+  {x: 100, y: 100, width: 300, height: 200, src: '../assets/obstacle.png'}
 ];
 
 // Score
@@ -96,15 +96,15 @@ function draw_cubs() {
 // Draws all the obstacles in the obstacles array onto the screen.
 function draw_obstacles() {
   for (let i = 0; i < obstacles.length; i++) {
-    var img1 = new Image(350, 200); // Image constructor
-    img1.src = '../assets/obstacle.png';
+    var img1 = new Image(obstacles[i].width, obstacles[i].height); // Image constructor
+    img1.src = obstacles[i].src;
 
     ctx.drawImage(
       img1,
       obstacles[i].x,
       obstacles[i].y,
-      350,
-      200,
+      obstacles[i].width,
+      obstacles[i].height,
     );
   }
 }
@@ -189,7 +189,9 @@ function change_direction(event) {
 // Moves the bear family.
 function move_family() {
   // Creates the new family's head.
-  const head = {x: bear_family[0].x + dx, y: bear_family[0].y + dy};
+  let new_x = bear_family[0].x + dx;
+  let new_y = bear_family[0].y + dy;
+  const head = {x: new_x, y: new_y};
   // Add the new head to the beginning of family.
   bear_family.unshift(head);
   var has_found_cub = false;
