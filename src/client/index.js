@@ -80,10 +80,12 @@ document.addEventListener("keydown", change_direction);
 function main() {
 
   if (has_game_ended() === 2) {
-    top_text.innerHTML = "You hit a wall. Game over!";
+    foundText.innerHTML = "You hit a wall. Game over!";
+    lostText.style.visibility = "hidden";
     return;
   } else if (has_game_ended() === 1) {
-    top_text.innerHTML = "Congrats! You found all the cubs!";
+    foundText.innerHTML = "Congrats! You found all the cubs!";
+    lostText.style.visibility = "hidden";
     return;
   }
   changing_direction = false;
