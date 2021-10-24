@@ -1,10 +1,12 @@
+/* general characteristics: same font, color, and shadow */
 body {
   font-family: 'Fredoka One', cursive;
   color: white;
   text-shadow: 2px 2px 4px #000000;
-  background-color: #3B7EA1;
+  background-color: #3B7EA1; /* shade of blue */
 }
 
+/* canvas: center and round the corners */
 #board {
   position: absolute;
   top: 50%;
@@ -12,6 +14,8 @@ body {
   transform: translate(-50%, -50%);
   border-radius: 3%;
 }
+
+/* scoreboard */
 .score {
   text-align: center;
   font-size: 18px;
@@ -25,9 +29,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  overflow: auto; /* Enable scroll if needed */
-  background-color: #DDD5C7; /* Fallback color */
-  color: #003262;
+  background-color: #DDD5C7; /* tan color */
+  color: #003262; /* Berkeley blue */
   text-shadow: none;
   padding: 1%;
   margin: 1%;
@@ -35,7 +38,8 @@ body {
   text-align: center;
   font-size: 2.5vw;
 }
-/* play again button animation */
+
+/* play again button animation - largen the text when hovered */
 #again:hover {
   animation-name: pulse;
 	animation-duration: 0.4s;
