@@ -1,3 +1,8 @@
+/* -----------------------------------------------
+/* Resources Referenced : Educative  - educative.io
+/* Resource Link : https://www.educative.io/blog/javascript-snake-game-tutorial
+/* ----------------------------------------------- */
+
 // GLOBAL VARIABLES
 // Get HTML elements.
 const board = document.getElementById("board");
