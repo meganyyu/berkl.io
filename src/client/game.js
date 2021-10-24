@@ -163,7 +163,7 @@ function clear_board() {
 function draw_cubs() {
   for (let i = 0; i < cubs.length; i++) {
     var img1 = new Image(); // Image constructor
-    img1.src = '../../../public/assets/blckbear-chick-front.png';
+    img1.src = '../../../public/assets/' + window.name + 'bear-chick-front.png';
 
     ctx.drawImage(
       img1,
@@ -219,7 +219,7 @@ function draw_bear_part(bear_part, is_head) {
 
   // Different image used depending on direction and is_head.
   var img1 = new Image();
-  img1.src = '../../../public/assets/blckbear-' + type + '-' + direction + '.png';
+  img1.src = '../../../public/assets/' + window.name + 'bear-' + type + '-' + direction + '.png';
 
   // Draw the image.
   ctx.drawImage(

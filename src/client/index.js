@@ -1,3 +1,20 @@
+// SELECTION
+const blck_button = document.getElementById('blck');
+function set_blck() {
+  window.name = 'blck';
+}
+blck_button.onclick = set_blck;
+const brwn_button = document.getElementById('brwn');
+function set_brwn() {
+  window.name = 'brwn';
+}
+brwn_button.onclick = set_brwn;
+const h_button = document.getElementById('h');
+function set_h() {
+  window.name = 'h';
+}
+h_button.onclick = set_h;
+
 // PLAY BUTTON
 const play_button = document.getElementById('play');
 // Clicking the play button leads to main game page
