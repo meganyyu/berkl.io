@@ -1,6 +1,7 @@
 // GLOBAL VARIABLES
-// Get the canvas element
+// Get HTML elements.
 const board = document.getElementById("board");
+const top_text = document.getElementById('score');
 // Return a two dimensional drawing context
 const ctx = board.getContext("2d");
 
@@ -15,13 +16,13 @@ let cubs = [
 
 ];
 // Set up 20 cubs with random coordinates.
-for (let i = 0; i < 20; i++) {
-  const cub = {x: random_loc(0, board.width - 10), y: random_loc(0, board.width - 10)};
+for (let i = 0; i < 15; i++) {
+  const cub = {x: random_loc(0, board.width - 10), y: random_loc(0, board.height - 10)};
   cubs.unshift(cub);
 }
 
 // Score
-let score = 0;
+let cubs_found = 0;
 // True if changing direction.
 let changing_direction = false;
 // Velocities
@@ -41,8 +42,13 @@ document.addEventListener("keydown", change_direction);
 // Main function called repeatedly to keep the game running.
 function main() {
 
-    if (has_game_ended()) return;
-
+    if (has_game_ended() === 2) {
+      top_text.innerHTML = "You hit a wall. Game over!";
+      return;
+    } else if (has_game_ended() === 1) {
+      top_text.innerHTML = "Congrats! You found all the cubs!";
+      return;
+    }
     changing_direction = false;
     setTimeout(function onTick() {
       clear_board();
@@ -174,9 +180,9 @@ function move_family() {
   }
   if (has_found_cub) {
     // Increase score
-    score += 10;
+    cubs_found += 1;
     // Display score on screen
-    document.getElementById('score').innerHTML = score;
+    top_text.innerHTML = cubs_found;
   } else {
     // Remove the last part of family body
     bear_family.pop();
@@ -195,7 +201,14 @@ function has_game_ended() {
   const hitBottomWall = bear_family[0].y > board.height - 10;
   // If there are no more cubs to be adopted.
   const noMoreCubs = cubs.length === 0;
-  return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall || noMoreCubs;
+
+  if (hitLeftWall || hitRightWall || hitToptWall || hitBottomWall) {
+    return 2;
+  } else if (noMoreCubs) {
+    return 1;
+  } else {
+    return 0;
+  }
 }
 
 // UTILITIES
