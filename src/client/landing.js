@@ -1,6 +1,6 @@
-// Play button leads to main game page.
+// PLAY BUTTON
 const play_button = document.getElementById('play');
-
+// Clicking the play button leads to main game page
 function play() {
   window.location.href = 'index.html';
 }
