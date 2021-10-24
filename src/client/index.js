@@ -6,6 +6,8 @@
 // GLOBAL VARIABLES
 // Get HTML elements.
 const board = document.getElementById("board");
+board.width = window.innerWidth * 0.85;
+board.height = window.innerHeight * 0.85;
 const top_text = document.getElementById('score');
 // Return a two dimensional drawing context
 const ctx = board.getContext("2d");
@@ -13,7 +15,7 @@ const ctx = board.getContext("2d");
 // Array of the head bear and its cubs.
 // First element is the head.
 let bear_family = [
-  {x: 500, y: 500}
+  {x: board.width / 2, y: board.height / 2}
 ];
 
 // Array of obstacles on the map.
