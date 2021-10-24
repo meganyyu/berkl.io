@@ -66,38 +66,55 @@ function clear_board() {
 
 // Draw the bear family on the canvas.
 function draw_bear() {
-  bear_family.forEach(draw_bear_part)
+  for (let i = 0; i < bear_family.length; i++) {
+    if (i === 0) {
+      draw_bear_part(bear_family[i], true);
+    } else {
+      draw_bear_part(bear_family[i], false);
+    }
+  }
 }
 
 // Draws all the unadopted cubs in the cubs array onto the screen.
 function draw_cubs() {
   for (let i = 0; i < cubs.length; i++) {
     var img1 = new Image(); // Image constructor
-    img1.src = '../assets/blckbear-hen-front.png';
+    img1.src = '../assets/blckbear-chick-front.png';
 
     ctx.drawImage(
       img1,
       cubs[i].x,
       cubs[i].y,
-      15,
-      15,
+      11,
+      11,
     );
   }
 }
 
 // Draws one bear part
-function draw_bear_part(bear_part) {
+function draw_bear_part(bear_part, is_head) {
+  // Determine type of file to use and size of image depending on is_head.
+  let type;
+  let size;
+  if (is_head) {
+    type = 'hen';
+    size = 16;
+  } else {
+    type = 'chick';
+    size = 11;
+  }
 
+  // Different image used depending on direction and is_head.
   var img1 = new Image();
-  // Different image used depending on direction.
-  img1.src = '../assets/blckbear-hen-' + direction + '.png';
+  img1.src = '../assets/blckbear-' + type + '-' + direction + '.png';
 
+  // Draw the image.
   ctx.drawImage(
     img1,
     bear_part.x,
     bear_part.y,
-    15,
-    15,
+    size,
+    size,
   );
 }
 
